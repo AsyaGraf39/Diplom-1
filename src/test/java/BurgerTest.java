@@ -5,8 +5,8 @@ import praktikum.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.Spy;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
@@ -34,10 +34,9 @@ public class BurgerTest {
     public void addIngredientTest() {
         Ingredient ingredient = database.availableIngredients().get(3);
         burger.addIngredient(ingredient);
-        boolean isContainsExpected = true;
         boolean isContainsActual = burger.ingredients.contains(ingredient);
 
-        assertEquals("Ошибка, в списке нет добавленного ингредиента", isContainsExpected, isContainsActual);
+        assertTrue("Ошибка, в списке нет добавленного ингредиента", isContainsActual);
     }
 
     @Test
@@ -45,10 +44,9 @@ public class BurgerTest {
         Ingredient ingredient = database.availableIngredients().get(1);
         burger.addIngredient(ingredient);
         burger.removeIngredient(0);
-        boolean isContainsExpected = false;
         boolean isContainsActual = burger.ingredients.contains(ingredient);
 
-        assertEquals("Ошибка, в списке нет добавленного ингредиента", isContainsExpected, isContainsActual);
+        assertFalse("Ошибка, ингредиент не удален", isContainsActual);
     }
 
     @Test
